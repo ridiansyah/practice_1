@@ -22,10 +22,25 @@ enum AuthStatus {
 
 class _AuthPageState extends State<AuthPage> {
   String _name, _email, _password, _phonenumber, _birth_date, _confirm_password;
-  AuthStatus authStatus = AuthStatus.onLoginPage;
+  AuthStatus authStatus;
   FlutterSecureStorage storage = new FlutterSecureStorage();
-  
+
   bool _loading = false;
+
+  void didChangedDepedencies() {
+    super.didChangeDependencies();
+    storage.read(key: 'confirm').then((value) {
+      if (value != null) {
+        setState(() {
+          authStatus = AuthStatus.onSubmitConfirm;
+        });
+      } else {
+        setState(() {
+          authStatus = AuthStatus.onLoginPage;
+        });
+      }
+    });
+  }
 
   void _goPage(String page) {
     setState(() {

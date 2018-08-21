@@ -1,4 +1,4 @@
-#Tue Aug 21 16:12:03 WIB 2018
+#Tue Aug 21 16:30:10 WIB 2018
 base.0=/Users/nugrohosam/Developing/google/dart/practice_1/build/app/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex
