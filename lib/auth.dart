@@ -7,6 +7,7 @@ abstract class GoAuth {
   Future<bool> onLogin(String email, String password);
   Future<bool> onSignUp(String name, String phone_number, String email, String password, String birth_date);
   Future<bool> onSignOut();
+  Future<bool> onForgotPassword(String email);
   Future<bool> onLoggedIn();
 }
 
@@ -65,6 +66,10 @@ class Auth implements GoAuth {
       _res = false;
     }
     return _res;
+  }
+
+  Future<bool> onForgotPassword(String email){
+
   }
 
   Future<bool> onLoggedIn() async {

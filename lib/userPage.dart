@@ -98,32 +98,31 @@ class _UserState extends State<UserPage> {
     }
   }
 
-  Future<bool> setContent() async {
+  Future<bool> _setContent() async {
     FlutterSecureStorage storage = new FlutterSecureStorage();
 
     try {
-      await storage.read(key: 'token').then((token) {
-        http.get(
-            "http://sistrodev.petrokimia-gresik.com/api/Account/DetailUser",
-            headers: {'Authorization': token}).then((response) {
-          var body = response.body;
-          var decoded = json.decode(body);
+      // await storage.read(key: 'token').then((token) {
+      //   http.get(
+      //       "http://sistrodev.petrokimia-gresik.com/api/Account/DetailUser",
+      //       headers: {'Authorization': token}).then((response) {
+      //     var body = response.body;
+      //     var decoded = json.decode(body);
           setState(() {
-            _username = decoded['username'];
+            _username = 'nugi';
           });
-        });
-      });
+      //   });
+      // });
       return true;
     } catch (e) {
-      print(e);
-      return false;
+      return true;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     var futureBuilder = new FutureBuilder(
-        future: setContent(),
+        future: _setContent(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:

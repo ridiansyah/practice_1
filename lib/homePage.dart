@@ -3,7 +3,7 @@ import './dashboardPage.dart' as dashboard;
 import './userPage.dart' as user;
 import 'auth.dart';
 
-class HomePage extends StatefulWidget{
+class HomePage extends StatefulWidget {
   HomePage({this.onSignedOut});
   final VoidCallback onSignedOut;
 
@@ -11,60 +11,61 @@ class HomePage extends StatefulWidget{
   _HomePageState createState() => new _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   TabController controller;
   final GoAuth auth = new Auth();
 
   void _onSignOut() async {
     try {
       bool status = await auth.onSignOut();
-      if(status){
+      if (status) {
         widget.onSignedOut();
-      }else{
+      } else {
         print('Cannot SingedOut');
       }
-    } catch(e){
+    } catch (e) {
       print('Error $e');
     }
   }
 
   @override
-    void initState() {
-      controller = new TabController(vsync: this, length: 3);
-      super.initState();
-    }
+  void initState() {
+    controller = new TabController(vsync: this, length: 3);
+    super.initState();
+  }
+
   @override
-    void dispose() {
-      controller.dispose();
-      super.dispose();
-    }
-    
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
-    Widget build(BuildContext context) {
-      return new Scaffold(
+  Widget build(BuildContext context) {
+    return new Scaffold(
       appBar: new AppBar(
         backgroundColor: Colors.amber,
-        title: new Text("Sistro Mobile"),
+        title: new Text("Buatin"),
       ),
       body: new TabBarView(
         controller: controller,
         children: <Widget>[
           new dashboard.DashboardPage(),
-          new user.UserPage(
-            onSignOut: _onSignOut
-          )
+          new user.UserPage(onSignOut: _onSignOut)
         ],
       ),
       bottomNavigationBar: new Material(
         color: Colors.amber,
         child: new TabBar(
+          indicatorColor: Colors.black,
           controller: controller,
           tabs: <Widget>[
-            new Tab(icon: new Icon(Icons.home),text: "Dashboard",),
-            new Tab(icon: new Icon(Icons.person),text: "User"),
+            new Tab(icon: new Icon(Icons.home), text: "Home"),
+            new Tab(icon: new Icon(Icons.person), text: "User")
           ],
-        ),        
+        ),
       ),
-      );
-}
+    );
+  }
 }

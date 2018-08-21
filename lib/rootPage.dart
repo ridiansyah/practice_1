@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'loginPage.dart';
+import 'authPage.dart';
 import 'auth.dart';
 import 'homePage.dart';
 
@@ -26,8 +26,8 @@ class _RootPageState extends State<RootPage> {
         auth.onLoggedIn().then((status) {
           setState(() {
             authStatus = status
-                ? AuthStatus.notSignedIn
-                : AuthStatus.loggedIn;
+                ? AuthStatus.loggedIn
+                : AuthStatus.notSignedIn;
           });
         });
       } else {
@@ -57,7 +57,7 @@ class _RootPageState extends State<RootPage> {
       case AuthStatus.onLoading:
         return _buildWaitingScreen();
       case AuthStatus.notSignedIn:
-        return LoginPage(
+        return AuthPage(
           onLoggedIn: _loggedIn,
         );
       case AuthStatus.loggedIn:
