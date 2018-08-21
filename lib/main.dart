@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'loginPage.dart';
-import 'signUpPage.dart';
+import 'rootPage.dart';
+import 'userPage.dart';
 
 void main(){
   runApp(new MyApp());
@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget{
             primaryColor: Colors.grey,
             accentColor: Colors.green,
       ),
-      home: LoginPage(),
+      home: RootPage(),
       routes: <String, WidgetBuilder>{
-        '/signup': (BuildContext context) => new SignUpPage()
+        '/user': (BuildContext context) => new UserPage()
       }
     );
   }

@@ -12,8 +12,8 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   String _name,
-      _username,
-      _phonenumber,
+      _email,
+      _phone_number,
       _password,
       _confirm_password,
       _birth_date;
@@ -87,7 +87,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   hintText: "Nama Lengkap",
                 ),
                 onChanged: (text) {
-                  _username = text;
+                  _name = text;
                 },
               ),
             ),
@@ -98,7 +98,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   hintText: "Email",
                 ),
                 onChanged: (text) {
-                  _username = text;
+                  _email = text;
                 },
               ),
             ),
@@ -110,7 +110,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     hintText: "+62..",
                   ),
                   onChanged: (text) {
-                    _password = text;
+                    _phone_number = text;
                   }),
             ),
             new ListTile(

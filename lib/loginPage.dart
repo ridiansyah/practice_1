@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:async';
+import 'auth.dart';
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
-  LoginPage({this.onSignedIn});
-  final VoidCallback onSignedIn;
+  LoginPage({this.onLoggedIn});
+  final VoidCallback onLoggedIn;
 
   @override
   _LoginPageState createState() => new _LoginPageState();
@@ -15,8 +17,14 @@ class _LoginPageState extends State<LoginPage> {
   bool _loading = false;
 
   Future _login() async {
-    setState(() {
-      _loading = false;
+    GoAuth auth = new Auth();
+    bool status = false;
+    await auth.onLogin(_email, _password).then((values) {
+      status = values;
+      widget.onLoggedIn();
+      setState(() {
+        _loading = false;
+      });
     });
   }
 
